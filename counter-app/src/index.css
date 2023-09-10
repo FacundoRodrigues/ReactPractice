@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+    color: white;
+    font-size: 1.3rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 100px;
+}
+
+button {
+    margin: 5px;
+    font-size: 1.3rem;
+}
