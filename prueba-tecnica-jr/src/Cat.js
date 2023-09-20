@@ -7,22 +7,8 @@ export const Cat =  () => {
     const [fact, setFact] = useState()
     const [imageUrl, setImageUrl] = useState('')
 
-    //Opción 1
-    // useEffect( () => {
-    //     getCatFact()
-    // }, [])
-
-    // const getCatFact = async () => {
-    //     const response = await fetch( URL_FACT );
-    //     const { fact }  = await response.json();
-
-    //     setFact(fact)
-
-    //     const firstWord = fact.split(' ', 3).join(' ');
-    //     setFirstWord(firstWord);
-    // }
-
     //Opción 2
+    // usa un useEffect para recuperar el hecho (Es buena practica que cada useEffect haga una cosa)
     useEffect( () => {
         fetch(URL_FACT)
             .then(response => response.json())
@@ -31,6 +17,7 @@ export const Cat =  () => {
             })
     }, [])
 
+    // usa otro para pegarle a la otra API
     useEffect(() => {
         if (!fact) return
 
