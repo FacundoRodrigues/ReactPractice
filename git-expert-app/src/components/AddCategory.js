@@ -13,7 +13,7 @@ const AddCategory = ( { setcategories }) => {
 
         if( inputValue.trim() === undefined || inputValue.trim() === '' ) return alert('no puede ser vacío')
 
-        setcategories(categories => [...categories, inputValue])
+        setcategories(categories => [ inputValue, ...categories])
     }
 
     return (
