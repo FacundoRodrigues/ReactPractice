@@ -1,3 +1,17 @@
 input {
     width: 100%;
 }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 1.7rem;
+    font-style: bold;
+    margin: 0px;
+}
+
