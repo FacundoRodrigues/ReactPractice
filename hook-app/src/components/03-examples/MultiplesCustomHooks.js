@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { QuoteItem } from './QuoteItem'
 
 export const MultiplesCustomHooks = () => {
-    const totalQuotes = 1
-    const { loading, data} = useFetch(`https://api.breakingbadquotes.xyz/v1/quotes/${totalQuotes}`)
+    const [url, setUrl] = useState(`https://api.breakingbadquotes.xyz/v1/quotes/1`)
+    const { loading, data} = useFetch(url)
 
     //!!data: si tenemos data..
     const { quote , author } = !!data && data[0]
     
-    const handleClick = ( number ) => {
-        console.log(number)
+    const handleClick = ( totalQuotes ) => {
+        const newUrl = `https://api.breakingbadquotes.xyz/v1/quotes/${totalQuotes}`
+        setUrl(newUrl)
     }
 
 
@@ -23,13 +24,13 @@ export const MultiplesCustomHooks = () => {
 
                 <div className='container'>
                     <div>
-                        <button onClick={ handleClick(3) }>Top 3</button>
+                        <button onClick={ () => handleClick(1) }>Top 1</button>
                     </div>
                     <div>
-                        <button>Top 5</button>
+                        <button onClick={ () => handleClick(3) }>Top 3</button>
                     </div>
                     <div>
-                        <button>Top 10</button>
+                        <button onClick={ () => handleClick(5) }>Top 5</button>
                     </div>
                 </div>
             </div>
@@ -39,8 +40,10 @@ export const MultiplesCustomHooks = () => {
                 {
                     loading 
                     ?   <code>Loading...</code> 
-                    :   <QuoteItem quote={quote} author={author} />
+                    :   data.map( (q , i ) => <QuoteItem key={i} quote={q.quote} author={q.author} />)
                 }
+
+
             </div>            
         </article>
     )
