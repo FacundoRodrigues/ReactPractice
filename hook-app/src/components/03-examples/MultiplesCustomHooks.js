@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import { useFetch } from '../../hooks/useFetch'
 import { QuoteItem } from './QuoteItem'
 
+const BREAKING_BAD_API_PREFIX = `https://api.breakingbadquotes.xyz/v1/quotes/`
+
 export const MultiplesCustomHooks = () => {
-    const [url, setUrl] = useState(`https://api.breakingbadquotes.xyz/v1/quotes/1`)
+    const [url, setUrl] = useState(`${BREAKING_BAD_API_PREFIX} ${1}`)
     const { loading, data} = useFetch(url)
 
     //!!data: si tenemos data..
     const { quote , author } = !!data && data[0]
     
     const handleClick = ( totalQuotes ) => {
-        const newUrl = `https://api.breakingbadquotes.xyz/v1/quotes/${totalQuotes}`
+        const newUrl = `${BREAKING_BAD_API_PREFIX} ${totalQuotes}`
         setUrl(newUrl)
     }
 
