@@ -1,7 +1,12 @@
-import React, { useReducer, useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
+import { useForm } from '../../hooks/useForm'
+
+import '../../index.css'
 
 let nextId = 1
-const initialTasks = []
+const init = () => {
+	return JSON.parse(localStorage.getItem('tasks')) || []
+}
 
 const todoReducer = ( state = [], action ) => {
     switch (action.type) {
@@ -14,28 +19,17 @@ const todoReducer = ( state = [], action ) => {
 }
 
 export const TodoApp = () => {
-    const [tasks, dispatch] = useReducer(todoReducer, initialTasks)
-    const [formValues, setFormValues] = useState({
-        task: ''
-    })
+    const [tasks, dispatch] = useReducer(todoReducer, [], init)
+    const [{ task }, handleInputChange, reset] = useForm([])
 
-    const handleInputChange = ({ target }) => {
-        setFormValues({
-            ...initialTasks,
-            [target.name] : target.value
-        })
-    }
-
-    const reset = () => {
-        console.log(initialTasks)
-        // setFormValues(initialTasks)
-    }
+	useEffect( () => {
+		localStorage.setItem('tasks', JSON.stringify( tasks ))
+	},[tasks])
 
     const handleSubmit = ( e ) => {
         e.preventDefault()
 
-        const task = formValues.task
-        console.log(task)
+        if(task === undefined || task?.trim().length <= 1) return
         
         const newTask = {
             id: nextId ++,
@@ -59,20 +53,25 @@ export const TodoApp = () => {
             <ol>
                 {
                     tasks.map(todo => 
-                        <li key={ todo.id }> { todo.task } </li>
+                        <div className='todo-list' key={ todo.id }>
+                            <li> { todo.task } </li>
+                            <button className='btn-delete'>Delete</button>
+                        </div>
                     )
                 }
             </ol>
             
             <form onSubmit={ handleSubmit }>
-                <input
-                    type='text'
-                    name='task'
-                    value={ formValues.task }
-                    autoComplete='off'
-                    onChange={ handleInputChange }
-                />
-                <button>Add</button>
+                <div className='todo-list'>
+                    <input
+                        type='text'
+                        name='task'
+                        value={ task || ''}
+                        autoComplete='off'
+                        onChange={ handleInputChange }
+                    />
+                    <button>Add</button>
+                </div>
             </form>
         </>
     )

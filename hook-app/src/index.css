@@ -15,3 +15,12 @@ input {
     margin: 0px;
 }
 
+.todo-list {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.btn-delete {
+    margin: 0px;
+}
