@@ -21,6 +21,21 @@ input {
     margin: 10px;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0px;
+}
+
 .btn-delete {
     margin: 0px;
+}
+
+.checkbox {
+    margin: 0px;
+}
+
+.complete {
+    text-decoration: line-through;
 }
