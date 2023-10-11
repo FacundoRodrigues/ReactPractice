@@ -2,7 +2,6 @@ import React from 'react'
 import { TaskItem } from './TaskItem'
 
 export const TaskList = ({ tasks, handleDelete, handleToggle }) => {
-    console.log('TaskItem ')
     return (
         <>
             <div>

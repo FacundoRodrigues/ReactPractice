@@ -1,7 +1,6 @@
 import React from 'react'
 
-export const TaskItem = ( { task, handleDelete, handleToggle } ) => {
-    console.log(task)
+export const TaskItem = React.memo(({ task, handleDelete, handleToggle }) => {
     return (
         <>
             <div className='task-grid' key={ task.id }>
@@ -18,4 +17,4 @@ export const TaskItem = ( { task, handleDelete, handleToggle } ) => {
             </div>
         </>
     )
-}
+})
