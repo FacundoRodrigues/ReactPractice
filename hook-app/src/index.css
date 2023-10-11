@@ -15,7 +15,13 @@ input {
     margin: 0px;
 }
 
-.todo-list {
+.task-grid {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.form-add {
     display: flex;
     justify-content: space-between;
     margin: 10px;

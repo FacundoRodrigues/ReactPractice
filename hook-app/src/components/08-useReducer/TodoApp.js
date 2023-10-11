@@ -1,41 +1,16 @@
-import React, { useEffect, useReducer, useRef } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { useForm } from '../../hooks/useForm'
 
 import '../../index.css'
+import { todoReducer } from './todoReducer'
+import { TaskList } from './TaskList'
 
 let nextId = 1
 const init = () => {
 	return JSON.parse(localStorage.getItem('tasks')) || []
 }
 
-const todoReducer = ( state = [], action ) => {
-    switch (action.type) {
-        case 'add':            
-            return [...state, action.payload]
 
-        case 'delete':            
-        return state.filter(t => t.id !== action.payload);
-
-        case 'toggle-old':            
-        return state.map( task => {
-            if(task.id === action.payload) {
-                return {
-                    ...task,
-                    done: !task.done
-                }
-            }
-            else return task
-        })
-
-        case 'toggle':
-        return state.map( task => 
-            ( task.id === action.payload ) ? { ...task, done: !task.done } : task
-        )
-    
-        default:
-            break;
-    }
-}
 
 export const TodoApp = () => {
     const [tasks, dispatch] = useReducer(todoReducer, [], init)
@@ -48,7 +23,7 @@ export const TodoApp = () => {
     const handleSubmit = ( e ) => {
         e.preventDefault()
 
-        if(task === undefined || task?.trim().length <= 1) return
+        if(task === undefined || task?.trim().length < 1) return
 
         dispatch({
             type: 'add',
@@ -82,27 +57,14 @@ export const TodoApp = () => {
             <h1>Todo list ({tasks.length})</h1>
             <hr />
 
-            <div>
-                {
-                    tasks.map(todo => 
-                        <div className='todo-list' key={ todo.id }>
-                            <div className='container'>
-                                <input className='checkbox' type='checkbox' />
-                                <div 
-                                    onClick={ () => handleToggle( todo.id ) }
-                                    className= {`${ todo.done && 'complete' }`}
-                                > 
-                                    { todo.task } 
-                                </div>
-                            </div>
-                            <button onClick={ () => handleDelete( todo.id ) } className='btn-delete'>Delete</button>
-                        </div>
-                    )
-                }
-            </div>
+            <TaskList 
+                tasks={tasks} 
+                handleDelete={ handleDelete } 
+                handleToggle={ handleToggle } 
+            />
             
             <form onSubmit={ handleSubmit }>
-                <div className='todo-list'>
+                <div className='form-add'>
                     <input
                         type='text'
                         name='task'
