@@ -14,9 +14,20 @@ import './index.css';
 // import { MemoHook } from './components/06-memos/MemoHook';
 // import { CallbackHook } from './components/06-memos/CallbackHook';
 // import { Padre } from './components/07-tarea-memo/Padre';
-import { TodoApp } from './components/08-useReducer/TodoApp';
+// import { TodoApp } from './components/08-useReducer/TodoApp';
+import { MainApp } from './components/09-useContext/MainApp';
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: (
+            <MainApp />
+        )
+    }
+])
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-    <TodoApp />
-);
+    <RouterProvider router={router} />
+)
