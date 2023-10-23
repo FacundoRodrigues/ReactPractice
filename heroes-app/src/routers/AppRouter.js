@@ -1,17 +1,17 @@
 import React from 'react'
-import { Route, Routes} from 'react-router-dom'
-import { Navbar } from '../components/Navbar'
+import { Route, Routes } from 'react-router-dom'
+import { LoginScreen } from '../components/login/LoginScreen'
+import { DashboardRoutes } from './DashboardRoutes'
 
 
 
 export const AppRouter = () => {
 	return (
 		<div>
-			<Navbar />
 
 			<Routes>
-				<Route path='/login' />
-				<Route path='/' />
+				<Route path='/login' element={ <LoginScreen /> } />
+				<Route path='/*' element={ <DashboardRoutes /> } />
 			</Routes>
 		</div>
 	)
