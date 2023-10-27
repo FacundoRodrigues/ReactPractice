@@ -9,7 +9,7 @@ export const DashboardRoutes = () => {
 	return (
 		<>
 			<Navbar />
-			<div>
+			<div className='container mt-2'>
 				<Routes>
 					<Route path='/dc' element={ <DcScreen /> } />
 					<Route path='/marvel' element={ <MarvelScreen /> } />
