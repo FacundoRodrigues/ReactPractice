@@ -22,15 +22,15 @@ const router = createBrowserRouter([
 				element: <DashboardRoutes />,
 				children: [
 					{
-						path: '/dc',
+						path: 'dc',
 						element: <DcScreen />
 					},
 					{
-						path: '/marvel',
+						path: 'marvel',
 						element: <MarvelScreen />
 					},
 					{
-						path: '/heroe',
+						path: 'hero/:heroeId',
 						element: <HeroesScreen />
 					}
 				]

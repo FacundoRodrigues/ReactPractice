@@ -10,10 +10,8 @@ export const HeroCard = ({
 	characters 
 }) => {
 
-	console.log(superhero)
 	return (
 		<>
-			{/* <div className='card ms-3'>{ superhero }</div> */}
 			<div className="card ms-3" style={{ width: '15rem' }}>
 				<img src={ `./assests/heroes/${ id }.jpg` } className="card-img" alt="..." />
 				<div className="card-body">
@@ -29,13 +27,15 @@ export const HeroCard = ({
 						<small className='text-muted'> {first_appearance} </small>
 					</p>
 					
-					<Link className='btn btn-primary' to={`.hero/${id}`}>
+					<Link 
+						className='btn btn-primary'
+						to={`/hero/${id}`}
+					>
             Mas..
 					</Link>
 				</div>
 			</div>
 		</>
-    
 	)
 }
 

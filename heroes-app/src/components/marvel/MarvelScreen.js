@@ -6,7 +6,7 @@ const MARVEL_PUBLISHER = 'Marvel Comics'
 export const MarvelScreen = () => {
 	return (
 		<>
-			<h1>DcScreen</h1>
+			<h1>Marvel</h1>
 			<hr />
 
 			<HeroList publisher={ MARVEL_PUBLISHER } />
