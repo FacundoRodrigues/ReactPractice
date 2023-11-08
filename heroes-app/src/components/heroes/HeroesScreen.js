@@ -32,7 +32,7 @@ export const HeroesScreen = () => {
 	return (
 		<>
 			<hr />
-			<div className='row'>
+			<div className='row animate__animated animate__fadeInDown'>
 				<div className='col-4'>
 					<img src={ `/assests/heroes/${ heroeId }.jpg` } className="img-thumbnail" alt={superhero} />
 				</div>

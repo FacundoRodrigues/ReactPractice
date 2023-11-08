@@ -8,7 +8,7 @@ export const HeroList = ({ publisher }) => {
 	const heroes = useMemo(() => getHeroByPublisher(publisher), [publisher])
 
 	return (
-		<div className='card-grid'>
+		<div className='card-grid animate__animated animate__fadeIn'>
 			{
 				heroes.map(heroe => 
 					<HeroCard

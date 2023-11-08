@@ -6,6 +6,7 @@ import { DcScreen } from './components/dc/DcScreen'
 import { MarvelScreen } from './components/marvel/MarvelScreen'
 import { HeroesScreen } from './components/heroes/HeroesScreen'
 import { DashboardRoutes } from './routers/DashboardRoutes'
+import { SearchScreen } from './components/search/SearchScreen'
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
 					{
 						path: 'hero/:heroeId',
 						element: <HeroesScreen />
+					},
+					{
+						path: 'search',
+						element: <SearchScreen />
 					}
 				]
 			}
