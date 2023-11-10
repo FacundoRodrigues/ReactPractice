@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { AppRouter } from './routers/AppRouter'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LoginScreen } from './components/login/LoginScreen'
@@ -7,6 +7,8 @@ import { MarvelScreen } from './components/marvel/MarvelScreen'
 import { HeroesScreen } from './components/heroes/HeroesScreen'
 import { DashboardRoutes } from './routers/DashboardRoutes'
 import { SearchScreen } from './components/search/SearchScreen'
+import { AuthContext } from './auth/AuthContext'
+import { authReducer } from './auth/authReducer'
 
 
 const router = createBrowserRouter([
@@ -44,8 +46,20 @@ const router = createBrowserRouter([
 	}
 ])
 
+const init = () => {
+	return JSON.parse(localStorage.getItem('user')) || { logged: false }
+}
+
 export const HeroesApp = () => {
+	const [user, dispatch] = useReducer(authReducer, {}, init)
+
+	useEffect( ()=> {
+		localStorage.setItem('user', JSON.stringify(user))
+	},[user])
+
 	return (
-		<RouterProvider router={router} />
+		<AuthContext.Provider value={{ user, dispatch }}>
+			<RouterProvider router={router} />
+		</AuthContext.Provider>
 	)
 }
