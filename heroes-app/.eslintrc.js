@@ -32,6 +32,7 @@ module.exports = {
 			'error',
 			'tab'
 		],
+		'react/prop-types': 'off',
 		'quotes': [
 			'error',
 			'single'

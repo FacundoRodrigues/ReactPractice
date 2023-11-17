@@ -7,8 +7,8 @@ import { getHeroByName } from '../../selectors/getHeroByName'
 export const SearchScreen = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 
-	
-	const queryString = searchParams.get('q')
+	const queryString = searchParams.get('q') === null ? '' : searchParams.get('q')
+
 	const [ formValues, hanldeInputChange ] = useForm({
 		searchText: queryString && ''
 	})

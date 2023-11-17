@@ -9,6 +9,7 @@ import { DashboardRoutes } from './routers/DashboardRoutes'
 import { SearchScreen } from './components/search/SearchScreen'
 import { AuthContext } from './auth/AuthContext'
 import { authReducer } from './auth/authReducer'
+import { PrivateRoute } from './routers/PrivateRoute'
 
 
 const router = createBrowserRouter([
@@ -22,23 +23,29 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/',
-				element: <DashboardRoutes />,
+				element: <PrivateRoute />,
 				children: [
 					{
-						path: 'dc',
-						element: <DcScreen />
-					},
-					{
-						path: 'marvel',
-						element: <MarvelScreen />
-					},
-					{
-						path: 'hero/:heroeId',
-						element: <HeroesScreen />
-					},
-					{
-						path: 'search',
-						element: <SearchScreen />
+						path: '/',
+						element: <DashboardRoutes />,
+						children: [
+							{
+								path: 'dc',
+								element: <DcScreen />
+							},
+							{
+								path: 'marvel',
+								element: <MarvelScreen />
+							},
+							{
+								path: 'hero/:heroeId',
+								element: <HeroesScreen />
+							},
+							{
+								path: 'search',
+								element: <SearchScreen />
+							}
+						]
 					}
 				]
 			}
