@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 export const PrivateRoute = ({ children, isAuthenticated }) => {
 	const location = useLocation()
 
+	localStorage.setItem('lastPath', location.pathname)
+
 	if (!isAuthenticated) return <Navigate to="/login" state={{ from: location }} />
 	
 	return children

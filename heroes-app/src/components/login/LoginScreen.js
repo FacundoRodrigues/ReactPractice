@@ -7,7 +7,9 @@ export const LoginScreen = () => {
 	const navigate = useNavigate()
 	const { dispatch }  = useContext(AuthContext)
 	
-	const handleClick = () => {		
+	const handleLogin = () => {		
+		const lastPath = localStorage.getItem('lastPath') || '/'
+
 		dispatch({
 			type: types.login,
 			payload: {
@@ -15,7 +17,7 @@ export const LoginScreen = () => {
 			}
 		})
 
-		navigate('/', { replace: true })
+		navigate(lastPath, { replace: true })
 	}
 
 	return (
@@ -25,7 +27,7 @@ export const LoginScreen = () => {
 
 			<button
 				className='btn btn-primary'
-				onClick={ handleClick }
+				onClick={ handleLogin }
 			>
 				Login
 			</button>
