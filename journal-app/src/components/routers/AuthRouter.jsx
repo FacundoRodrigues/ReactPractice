@@ -1,8 +1,16 @@
 import React from 'react'
-import '../../index.css'
+import { Route, Routes } from 'react-router-dom'
+import { LoginScreen } from '../auth/LoginScreen'
+import { RegisterScreen } from '../auth/RegisterScreen'
 
 export const AuthRouter = () => {
   return (
-    <h1 className="text-3xl font-bold underline">AuthRouter</h1>
+    <>
+      <Routes>
+        <Route path='login' element={ <LoginScreen /> } />
+        <Route path='register' element={ <RegisterScreen /> } />
+        <Route path='*' element={ <LoginScreen /> } />
+      </Routes>
+    </>
   )
 }
